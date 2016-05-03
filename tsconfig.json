@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "sourceMap": true,
+    "declaration": true
+//    "noImplicitAny": true
+  },
+  "files": [
+    "ionic-screens.ts",
+    "typings/browser/ambient/es6-shim/index",
+    "node_modules/retyped-jssha-tsd-ambient/jssha"
+  ],
+  "exclude": [
+    "node_modules",
+    "typings/main",
+    "typings/main.d.ts"
+  ]
+}
