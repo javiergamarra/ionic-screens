@@ -2,7 +2,7 @@ import {Component, Type, Output, EventEmitter} from "@angular/core";
 import {UserViewModel} from "../userportrait-screenlet";
 
 @Component({
-    template: '<img src="{{url}}" (click)="onClick">'
+    template: '<img src="{{url}}" (click)="onClick($event)">'
 })
 export class UserPortraitDefaultView extends Type implements UserViewModel {
 
@@ -11,8 +11,8 @@ export class UserPortraitDefaultView extends Type implements UserViewModel {
     @Output()
     imageClicked:EventEmitter<any> = new EventEmitter<any>();
 
-    onClick() {
-        this.imageClicked.emit('click');
+    onClick($event) {
+        this.imageClicked.emit($event);
     }
 
     postAction(data) {

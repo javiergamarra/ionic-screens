@@ -16,7 +16,7 @@ export interface UserViewModel {
 
 @Component({
     selector: 'userportrait-screenlet',
-    template: '<div #target (onUserAction)="onUserAction($event)"></div>',
+    template: '<div #target></div>',
     providers: [UserPortraitService]
 })
 export class UserPortraitScreenlet extends BaseScreenlet {
