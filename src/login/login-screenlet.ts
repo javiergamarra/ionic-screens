@@ -34,6 +34,9 @@ export class LoginScreenlet extends BaseScreenlet implements OnInit {
     @Output()
     onLoginSuccess:EventEmitter<any> = new EventEmitter<any>();
 
+    @Input()
+    layout;
+
     @ViewChild('target', {read: ViewContainerRef}) target:ViewContainerRef;
 
     ngOnInit() {
