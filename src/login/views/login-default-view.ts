@@ -27,12 +27,12 @@ export class LoginDefaultView extends Type implements LoginViewModel {
         dismissOnPageChange: true
     });
 
-    constructor(public nav:NavController) {
+    constructor(private _navController:NavController) {
         super();
     }
 
     login($event) {
-        this.nav.present(this.loading);
+        this._navController.present(this.loading);
         this.onUserAction.emit(new LoginEvent(this.username, this.password));
     }
 
