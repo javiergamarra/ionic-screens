@@ -21,10 +21,7 @@ export class BaseScreenlet {
                 [type, provide(type, {useValue: this.layout})]);
             return injector.get(type);
         }
-
-        var any = ReflectiveInjector.resolveAndCreate([type, type]).get(type);
-        console.log(any);
-        return any;
+        return type;
     }
 
 }
