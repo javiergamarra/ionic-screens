@@ -1,12 +1,13 @@
 import {
-    Component, Output, EventEmitter, DynamicComponentLoader, ElementRef, OnInit,
-    ViewContainerRef, ViewChild, ComponentResolver, ComponentFactory
+    Component, Output, EventEmitter, OnInit,
+    ViewContainerRef, ViewChild, ComponentResolver, ComponentFactory, Input
 } from "@angular/core";
 import "rxjs/Rx";
 
 import {LoginService} from "./service/login-service";
 import {LoginDefaultView} from "./views/login-default-view";
 import {BaseScreenlet} from "../screens/basescreenlet";
+import {ScreensService} from "../screens/screens-service";
 
 export class LoginEvent {
 
@@ -48,24 +49,27 @@ export class LoginScreenlet extends BaseScreenlet implements OnInit {
         this.componentResolver.resolveComponent(loginView).then((factory:ComponentFactory<any>) => {
             var component = this.target.createComponent(factory);
             component.instance.onUserAction.subscribe($event => {
-                this.loginService.login($event.id, $event.password)
-                    .subscribe(
-                        data => {
-                            component.instance.postAction(data);
-                            self.onLoginSuccess.emit(data)
-                        },
-                        err => {
-                            component.instance.postAction(err);
-                            self.onLoginSuccess.emit(err);
-                        },
-                        () => console.log('Authentication Complete')
-                    )
+                        this.loginService.login($event.id, $event.password)
+                            .subscribe(
+                                data => {
+                                    this.screensService.storeUser(data);
+                                    component.instance.postAction(data);
+                                    self.onLoginSuccess.emit(data)
+                                },
+                                err => {
+                                    err.exception = 'Failed!';
+                                    component.instance.postAction(err);
+                                    self.onLoginSuccess.emit(err);
+                                },
+                                () => console.log('Authentication Complete')
+                            )
             });
         });
     }
 
     constructor(public componentResolver:ComponentResolver,
-                public loginService:LoginService) {
+                public loginService:LoginService,
+                public screensService:ScreensService) {
         super();
     }
 }

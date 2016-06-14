@@ -7,6 +7,7 @@ export class ScreensService {
     constructor(@Inject('serverUrl') public serverUrl:string,
                 @Inject('companyId') public companyId:number,
                 @Inject('groupId') public groupId:number) {
+        console.log(this.serverUrl);
     }
 
     getServerUrl() {
@@ -18,7 +19,7 @@ export class ScreensService {
     }
 
     isLoggedIn() {
-        return this.username != null && this.password != null;
+        return this.username != null && this.password != null && this.data != null;
     }
 
     storeCredentials(username:string, password:string) {
@@ -26,12 +27,21 @@ export class ScreensService {
         this.password = password;
     }
 
+    storeUser(data) {
+        this.data = data;
+    }
+
+    getUser() {
+        return this.data;
+    }
+
     logout() {
+        this.data = null;
         this.storeCredentials('', '');
     }
 
     username;
     password;
-
+    data;
 
 }
