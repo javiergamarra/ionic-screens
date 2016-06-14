@@ -1,6 +1,6 @@
 import {Component, Type, Output, EventEmitter} from "@angular/core";
-import {Loading, NavController} from "ionic-angular/index";
 import {LoginEvent, LoginViewModel} from "../login-screenlet";
+import {Loading, NavController} from "ionic-angular/index";
 
 @Component({
     template: `
@@ -15,23 +15,24 @@ import {LoginEvent, LoginViewModel} from "../login-screenlet";
                 </ion-item>
                 
                 <button full (click)="login($event)">Login</button>
-    `,
+    `
 })
 export class LoginDefaultView extends Type implements LoginViewModel {
 
     username;
     password;
 
-    loading = Loading.create({
-        content: "Please wait...",
-        dismissOnPageChange: true
-    });
-
     constructor(private _navController:NavController) {
         super();
     }
 
+    loading;
+
     login($event) {
+        this.loading = Loading.create({
+            content: "Please wait...",
+            dismissOnPageChange: true
+        });
         this._navController.present(this.loading);
         this.onUserAction.emit(new LoginEvent(this.username, this.password));
     }

@@ -1,8 +1,8 @@
 import {Component} from "@angular/core";
-import {NavController} from "ionic-angular/index";
 import {LoginEvent} from "../login-screenlet";
 import {ScreensService} from "../../screens/screens-service";
 import {LoginDefaultView} from "./login-default-view";
+import {NavController, Loading} from "ionic-angular/index";
 
 @Component({
     template: `
@@ -33,7 +33,7 @@ import {LoginDefaultView} from "./login-default-view";
               
                 <button full (click)="loginSavingCredentials($event)">Login</button>
     </div>
-    `,
+    `
 })
 export class LoginSaveCredentialsView extends LoginDefaultView {
 
@@ -52,25 +52,25 @@ export class LoginSaveCredentialsView extends LoginDefaultView {
         return this.screensService.isLoggedIn();
     }
 
-    constructor(public nav:NavController, public screensService:ScreensService) {
-        super(nav);
-        if (screensService.isLoggedIn()) {
-            this.username = screensService.username;
-            this.password = screensService.password;
-        } else {
-            this.username = "";
-            this.password = "";
-        }
+    constructor(public _navControler:NavController,
+                public screensService:ScreensService) {
+        super(_navControler);
+        this.username = screensService.isLoggedIn() ? screensService.username : "";
+        this.password = screensService.isLoggedIn() ? screensService.password : "";
     }
 
     loginSavingCredentials($event) {
-        this.nav.present(this.loading);
+        this.loading = Loading.create({
+            content: "Please wait...",
+            dismissOnPageChange: true
+        });
+        this._navControler.present(this.loading);
         this.onUserAction.emit(new LoginEvent(this.username, this.password));
     }
 
     postAction(data) {
         this.loading.dismiss().then(() => console.log(data));
-        if (this.savecredentials) {
+        if (this.savecredentials && !data.exception) {
             this.screensService.storeCredentials(this.username, this.password);
         }
     }
