@@ -1,6 +1,6 @@
 {
   "name": "ionic-screens",
-  "version": "1.0.0-beta.16",
+  "version": "1.0.0-beta.17",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -12,13 +12,12 @@
   "dependencies": {
     "jssha": "^1.6.2",
     "ionic-angular": "^2.0.0-beta.10",
-    "@angular/core" :"^2.0.0-rc.4",
-    "@angular/common" :"^2.0.0-rc.4",
-    "@angular/compiler" :"^2.0.0-rc.4",
-    "@angular/http" :"^2.0.0-rc.4",
-    "@angular/platform-browser" :"^2.0.0-rc.4",
-    "@angular/platform-browser-dynamic" :"^2.0.0-rc.4",
-    "@angular/router" :"^2.0.0-rc.4",
+    "@angular/common": "2.0.0-rc.3",
+    "@angular/compiler": "2.0.0-rc.3",
+    "@angular/core": "2.0.0-rc.3",
+    "@angular/http": "2.0.0-rc.3",
+    "@angular/platform-browser": "2.0.0-rc.3",
+    "@angular/platform-browser-dynamic": "2.0.0-rc.3",
     "rxjs" :"^5.0.0-beta.6"
   },
   "typings": "./ionic-screens.d.ts",
