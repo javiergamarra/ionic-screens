@@ -15,7 +15,7 @@ export class ScreensService {
     }
 
     getApiUrl() {
-        return this.getServerUrl() + "/api/jsonws/"
+        return this.getServerUrl() + (this.getServerUrl().endsWith('/') ? '' : '/') + "api/jsonws/";
     }
 
     isLoggedIn() {
