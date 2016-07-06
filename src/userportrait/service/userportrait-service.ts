@@ -1,8 +1,8 @@
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs/Observable";
-//noinspection TypeScriptCheckImport
 import * as jssha from "jssha";
 import {ScreensService} from "../../screens/screens-service";
+import {UserPortraitCircleView} from "../views/userportrait-circle-view";
 
 @Injectable()
 export class UserPortraitService {
@@ -24,9 +24,8 @@ export class UserPortraitService {
     }
 
     private getSha1(text:string) {
-        var shaObj = new jssha('SHA-1', 'TEXT');
-        shaObj.update(text);
-        return shaObj.getHash('B64');
+        let shaObj = new jssha(text, 'TEXT');
+        return shaObj.getHash( 'SHA-1', 'B64');
     }
 
 }
