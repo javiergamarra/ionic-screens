@@ -1,9 +1,4 @@
-import {
-    Component,
-    Input,
-    provide,
-    ReflectiveInjector,
-} from "@angular/core";
+import {Component, Input, ReflectiveInjector} from "@angular/core";
 
 @Component({
     selector: 'screenlet',
@@ -17,8 +12,8 @@ export class BaseScreenlet {
     getLayout(type) {
 
         if (this.layout) {
-            var injector = ReflectiveInjector.resolveAndCreate(
-                [type, provide(type, {useValue: this.layout})]);
+            let injector = ReflectiveInjector.resolveAndCreate(
+                [type, {provide: type, useValue: this.layout}]);
             return injector.get(type);
         }
         return type;

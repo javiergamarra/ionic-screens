@@ -13,9 +13,9 @@ export class LoginService {
 
     login(username, password) {
 
-        var body = "companyId=" + this.screensService.companyId + "&emailAddress=" + username;
+        let body = "companyId=" + this.screensService.companyId + "&emailAddress=" + username;
 
-        var headers = new Headers();
+        let headers = new Headers();
         headers.append('Authorization', 'Basic ' + btoa(username + ":" + password));
         headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
 

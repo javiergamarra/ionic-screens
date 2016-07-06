@@ -38,12 +38,12 @@ export class UserPortraitScreenlet extends BaseScreenlet {
 
     private load() {
 
-        var userPortraitView:UserPortraitDefaultView = this.getLayout(UserPortraitDefaultView);
+        let userPortraitView:UserPortraitDefaultView = this.getLayout(UserPortraitDefaultView);
 
         this.userPortraitService.getUserPortraitUrl(this.male, this.portraitId, this.uuid)
             .subscribe(url => {
                 this.componentResolver.resolveComponent(userPortraitView).then((factory:ComponentFactory<any>) => {
-                    var component = this.target.createComponent(factory);
+                    let component = this.target.createComponent(factory);
                     component.instance.url = url;
                     component.instance.imageClicked.subscribe($event => {
                         component.instance.postAction($event);

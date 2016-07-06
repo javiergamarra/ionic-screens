@@ -42,12 +42,12 @@ export class LoginScreenlet extends BaseScreenlet implements OnInit {
 
     ngOnInit() {
 
-        var loginView:LoginDefaultView = this.getLayout(LoginDefaultView);
+        let loginView:LoginDefaultView = this.getLayout(LoginDefaultView);
 
-        var self = this;
+        let self = this;
 
         this.componentResolver.resolveComponent(loginView).then((factory:ComponentFactory<any>) => {
-            var component = this.target.createComponent(factory);
+            let component = this.target.createComponent(factory);
             component.instance.onUserAction.subscribe($event => {
                         this.loginService.login($event.id, $event.password)
                             .subscribe(
